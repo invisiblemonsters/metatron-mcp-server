@@ -132,8 +132,8 @@ let paidRequests = 0;
 const startTime = Date.now();
 
 // x402 Payment Middleware
-async function requirePayment(serviceId) {
-  return async (req, res, next) => {
+function requirePayment(serviceId) {
+  return (req, res, next) => {
     const service = SERVICES[serviceId];
     if (!service) return next();
     
@@ -153,13 +153,14 @@ async function requirePayment(serviceId) {
       });
     }
     const paymentId = `${x402Header}:${Date.now().toString().slice(0, -6)}`;
-    const verification = await verifyPayment(paymentId, service.price);
-    if (!verification.verified) {
-      return res.status(402).json({ error: "Invalid or unverified payment", details: verification.error });
-    }
-    paidRequests++;
-    req.paymentVerified = verification;
-    next();
+    verifyPayment(paymentId, service.price).then(verification => {
+      if (!verification.verified) {
+        return res.status(402).json({ error: "Invalid or unverified payment", details: verification.error });
+      }
+      paidRequests++;
+      req.paymentVerified = verification;
+      next();
+    }).catch(err => res.status(500).json({ error: err.message }));
   };
 }
 
