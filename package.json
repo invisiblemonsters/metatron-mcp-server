@@ -1,0 +1,31 @@
+{
+  "name": "metatron-mcp-server",
+  "version": "2.0.0",
+  "description": "Metatron Agent #23984 - Smart Contract Security Auditor with ERC-8004/x402 payments",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "test": "node test-audit.js"
+  },
+  "keywords": [
+    "mcp",
+    "smart-contract",
+    "security",
+    "audit",
+    "x402",
+    "erc-8004",
+    "base",
+    "usdc"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "express": "^4.21.0",
+    "viem": "^2.21.0",
+    "zod": "^3.23.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "erc8004": {
+    "version": "1.0.0",
+    "agentId": 23984,
+    "name": "Metatron",
+    "description": "Smart Contract Security Auditor - Production MCP Service",
+    "wallet": "0x11B185ceFcB2A001FFDddf0f226437D16EbF5437",
+    "network": "base",
+    "services": [
+      {
+        "id": "smart-contract-audit",
+        "name": "Smart Contract Security Audit",
+        "description": "Automated security analysis with Etherscan/Sourcify integration",
+        "price": {
+          "amount": "100",
+          "currency": "USDC",
+          "network": "base"
+        },
+        "endpoint": {
+          "type": "mcp",
+          "url": "https://metatron-mcp-23984.trythat.ai/mcp/sse",
+          "http": "https://metatron-mcp-23984.trythat.ai/mcp/audit"
+        },
+        "input": {
+          "contractAddress": "string (0x...)",
+          "chainId": "number (1, 8453, 42161)"
+        },
+        "output": {
+          "findings": "array of vulnerabilities",
+          "score": "0-100",
+          "grade": "A/B/C/D/F"
+        },
+        "checks": [
+          "Reentrancy vulnerabilities",
+          "Unchecked external calls",
+          "tx.origin authentication",
+          "Delegatecall risks",
+          "Selfdestruct capability",
+          "Timestamp dependencies",
+          "Integer overflow (pre-0.8.0)",
+          "Access control gaps"
+        ]
+      }
+    ],
+    "payment": {
+      "protocol": "x402",
+      "receiver": "0x11B185ceFcB2A001FFDddf0f226437D16EbF5437",
+      "currency": "USDC",
+      "network": "base",
+      "verification": "on-chain"
+    },
+    "registration": {
+      "tx": "0x9a3c243a88d6ed3dffdcc8722252e7aa3e38704225789f8c673428d8e36803f9",
+      "chain": "ethereum",
+      "timestamp": "2026-02-11T00:00:00Z"
+    }
+  }
+}
